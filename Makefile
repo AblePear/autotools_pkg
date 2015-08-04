@@ -30,6 +30,7 @@ autotools.pkg : \
         --resources resources \
         --package-path $(TMP) \
         --version $(pkg_version) \
+        --sign 'Able Pear Software Incorporated' \
         $@
 
 
