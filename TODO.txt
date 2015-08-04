@@ -1,0 +1,5 @@
+- paths.d file
+- links to documentation
+- include source dist in installer w/ option to install
+- parameterize versions in distribution.xml
+
