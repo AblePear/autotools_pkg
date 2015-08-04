@@ -21,8 +21,9 @@ autotools.pkg : \
         $(TMP)/autoconf.pkg \
         $(TMP)/automake.pkg \
         $(TMP)/libtool.pkg \
-        resources/distribution.xml \
         resources/background.png \
+        resources/distribution.xml \
+        resources/license.html \
         resources/welcome.html
 	productbuild \
         --distribution resources/distribution.xml \
