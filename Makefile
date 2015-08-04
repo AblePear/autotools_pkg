@@ -19,6 +19,7 @@ clean :
 autoconf_src := $(shell find autoconf -type f \! -name .DS_Store)
 autoconf_build_dir := $(TMP)/autoconf/build
 autoconf_install_dir := $(TMP)/autoconf/install
+autoconf_version := 2.69
 
 
 $(PRODUCTS)/autoconf.pkg : $(autoconf_install_dir)/usr/local/bin/autoconf | $(PRODUCTS)
@@ -26,6 +27,7 @@ $(PRODUCTS)/autoconf.pkg : $(autoconf_install_dir)/usr/local/bin/autoconf | $(PR
         --root $(autoconf_install_dir) \
         --identifier com.ablepear.autoconf \
         --ownership recommended \
+        --version $(autoconf_version) \
         $@
 
 
@@ -46,6 +48,7 @@ $(autoconf_build_dir)/config.status : autoconf/configure | $(autoconf_build_dir)
 automake_src := $(shell find automake -type f \! -name .DS_Store)
 automake_build_dir := $(TMP)/automake/build
 automake_install_dir := $(TMP)/automake/install
+automake_version := 1.15
 
 
 $(PRODUCTS)/automake.pkg : $(automake_install_dir)/usr/local/bin/automake | $(PRODUCTS)
@@ -53,6 +56,7 @@ $(PRODUCTS)/automake.pkg : $(automake_install_dir)/usr/local/bin/automake | $(PR
         --root $(automake_install_dir) \
         --identifier com.ablepear.automake \
         --ownership recommended \
+        --version $(automake_version) \
         $@
 
 
@@ -73,6 +77,7 @@ $(automake_build_dir)/config.status : automake/configure | $(automake_build_dir)
 libtool_src := $(shell find libtool -type f \! -name .DS_Store)
 libtool_build_dir := $(TMP)/libtool/build
 libtool_install_dir := $(TMP)/libtool/install
+libtool_version := 2.4.6
 
 
 $(PRODUCTS)/libtool.pkg : $(libtool_install_dir)/usr/local/bin/libtool | $(PRODUCTS)
@@ -80,6 +85,7 @@ $(PRODUCTS)/libtool.pkg : $(libtool_install_dir)/usr/local/bin/libtool | $(PRODU
         --root $(libtool_install_dir) \
         --identifier com.ablepear.libtool \
         --ownership recommended \
+        --version $(libtool_version) \
         $@
 
 
