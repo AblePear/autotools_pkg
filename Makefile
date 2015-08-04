@@ -3,13 +3,14 @@ export TMP ?= $(abspath tmp)
 
 
 .PHONY : all
-all : $(PRODUCTS)/autoconf.pkg $(PRODUCTS)/automake.pkg
+all : $(PRODUCTS)/autoconf.pkg $(PRODUCTS)/automake.pkg $(PRODUCTS)/libtool.pkg
 
 
 .PHONY : clean
 clean :
 	-rm -f $(PRODUCTS)/autoconf.pkg
 	-rm -f $(PRODUCTS)/automake.pkg
+	-rm -f $(PRODUCTS)/libtool.pkg
 	-rm -rf $(TMP)
 
 
@@ -67,12 +68,41 @@ $(automake_build_dir)/config.status : automake/configure | $(automake_build_dir)
 	cd $(automake_build_dir) && sh $(abspath automake/configure)
 
 
+##### libtool #####
+
+libtool_src := $(shell find libtool -type f \! -name .DS_Store)
+libtool_build_dir := $(TMP)/libtool/build
+libtool_install_dir := $(TMP)/libtool/install
+
+
+$(PRODUCTS)/libtool.pkg : $(libtool_install_dir)/usr/local/bin/libtool | $(PRODUCTS)
+	pkgbuild \
+        --root $(libtool_install_dir) \
+        --identifier com.ablepear.libtool \
+        --ownership recommended \
+        $@
+
+
+$(libtool_install_dir)/usr/local/bin/libtool : $(libtool_build_dir)/libtool | $(libtool_install_dir)
+	cd $(libtool_build_dir) && $(MAKE) DESTDIR=$(libtool_install_dir) install
+
+
+$(libtool_build_dir)/libtool : $(libtool_build_dir)/config.status $(libtool_src)
+	cd $(libtool_build_dir) && $(MAKE)
+
+
+$(libtool_build_dir)/config.status : libtool/configure | $(libtool_build_dir)
+	cd $(libtool_build_dir) && sh $(abspath libtool/configure)
+
+
 ##### directories #####
 
 $(PRODUCTS) \
 $(autoconf_build_dir) \
 $(autoconf_install_dir) \
 $(automake_build_dir) \
-$(automake_install_dir) : 
+$(automake_install_dir) \
+$(libtool_build_dir) \
+$(libtool_install_dir) : 
 	mkdir -p $@
 
