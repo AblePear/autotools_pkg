@@ -1,17 +1,35 @@
-export PRODUCTS ?= $(abspath products)
-export TMP ?= $(abspath tmp)
+TMP ?= $(abspath tmp)
+pkg_version := 1
+autoconf_version := 2.69
+automake_version := 1.15
+libtool_version := 2.4.6
 
 
 .PHONY : all
-all : $(PRODUCTS)/autoconf.pkg $(PRODUCTS)/automake.pkg $(PRODUCTS)/libtool.pkg
+all : autotools.pkg
 
 
 .PHONY : clean
 clean :
-	-rm -f $(PRODUCTS)/autoconf.pkg
-	-rm -f $(PRODUCTS)/automake.pkg
-	-rm -f $(PRODUCTS)/libtool.pkg
+	-rm -f autotools.pkg
 	-rm -rf $(TMP)
+
+
+#### autotools.pkg #####
+
+autotools.pkg : \
+        $(TMP)/autoconf.pkg \
+        $(TMP)/automake.pkg \
+        $(TMP)/libtool.pkg \
+        resources/distribution.xml \
+        resources/background.png \
+        resources/welcome.html
+	productbuild \
+        --distribution resources/distribution.xml \
+        --resources resources \
+        --package-path $(TMP) \
+        --version $(pkg_version) \
+        $@
 
 
 ##### autoconf #####
@@ -19,10 +37,9 @@ clean :
 autoconf_src := $(shell find autoconf -type f \! -name .DS_Store)
 autoconf_build_dir := $(TMP)/autoconf/build
 autoconf_install_dir := $(TMP)/autoconf/install
-autoconf_version := 2.69
 
 
-$(PRODUCTS)/autoconf.pkg : $(autoconf_install_dir)/usr/local/bin/autoconf | $(PRODUCTS)
+$(TMP)/autoconf.pkg : $(autoconf_install_dir)/usr/local/bin/autoconf | $(TMP)
 	pkgbuild \
         --root $(autoconf_install_dir) \
         --identifier com.ablepear.autoconf \
@@ -48,10 +65,9 @@ $(autoconf_build_dir)/config.status : autoconf/configure | $(autoconf_build_dir)
 automake_src := $(shell find automake -type f \! -name .DS_Store)
 automake_build_dir := $(TMP)/automake/build
 automake_install_dir := $(TMP)/automake/install
-automake_version := 1.15
 
 
-$(PRODUCTS)/automake.pkg : $(automake_install_dir)/usr/local/bin/automake | $(PRODUCTS)
+$(TMP)/automake.pkg : $(automake_install_dir)/usr/local/bin/automake | $(TMP)
 	pkgbuild \
         --root $(automake_install_dir) \
         --identifier com.ablepear.automake \
@@ -77,10 +93,9 @@ $(automake_build_dir)/config.status : automake/configure | $(automake_build_dir)
 libtool_src := $(shell find libtool -type f \! -name .DS_Store)
 libtool_build_dir := $(TMP)/libtool/build
 libtool_install_dir := $(TMP)/libtool/install
-libtool_version := 2.4.6
 
 
-$(PRODUCTS)/libtool.pkg : $(libtool_install_dir)/usr/local/bin/libtool | $(PRODUCTS)
+$(TMP)/libtool.pkg : $(libtool_install_dir)/usr/local/bin/libtool | $(TMP)
 	pkgbuild \
         --root $(libtool_install_dir) \
         --identifier com.ablepear.libtool \
@@ -103,7 +118,7 @@ $(libtool_build_dir)/config.status : libtool/configure | $(libtool_build_dir)
 
 ##### directories #####
 
-$(PRODUCTS) \
+$(TMP) \
 $(autoconf_build_dir) \
 $(autoconf_install_dir) \
 $(automake_build_dir) \

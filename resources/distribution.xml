@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+  <title>GNU Autotools for OS X</title>
+  
+  <background alignment="center" file="background.png" mime-type="image/png" scaling="tofit" />
+  <welcome file="welcome.html" mime-type="text/html" />
+  
+  <pkg-ref id="com.ablepear.autoconf"/>
+  <pkg-ref id="com.ablepear.automake"/>
+  <pkg-ref id="com.ablepear.libtool"/>
+  
+  <options allow-external-scripts="yes" customize="never" require-scripts="false"/>
+  
+  <choices-outline>
+    <line choice="default">
+      <line choice="com.ablepear.autoconf"/>
+      <line choice="com.ablepear.automake"/>
+      <line choice="com.ablepear.libtool"/>
+    </line>
+  </choices-outline>
+  
+  <choice id="default"/>
+  
+  
+  <choice id="com.ablepear.autoconf" visible="false">
+    <pkg-ref id="com.ablepear.autoconf"/>
+  </choice>
+  <pkg-ref id="com.ablepear.autoconf" version="0" onConclusion="none">autoconf.pkg</pkg-ref>
+  
+  
+  <choice id="com.ablepear.automake" visible="false">
+    <pkg-ref id="com.ablepear.automake"/>
+  </choice>
+  <pkg-ref id="com.ablepear.automake" version="0" onConclusion="none">automake.pkg</pkg-ref>
+  
+  
+  <choice id="com.ablepear.libtool" visible="false">
+    <pkg-ref id="com.ablepear.libtool"/>
+  </choice>
+  <pkg-ref id="com.ablepear.libtool" version="0" onConclusion="none">libtool.pkg</pkg-ref>
+  
+</installer-gui-script>
