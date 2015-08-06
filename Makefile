@@ -1,8 +1,9 @@
 TMP ?= $(abspath tmp)
-pkg_version := 1
+
 autoconf_version := 2.69
 automake_version := 1.15
 libtool_version := 2.4.6
+installer_version := 1
 
 
 .PHONY : all
@@ -29,7 +30,7 @@ autotools.pkg : \
         --distribution distribution.xml \
         --resources resources \
         --package-path $(TMP) \
-        --version $(pkg_version) \
+        --version $(installer_version) \
         --sign 'Able Pear Software Incorporated' \
         $@
 
