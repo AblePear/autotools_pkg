@@ -23,24 +23,33 @@ autotools-r$(installer_version).pkg : \
         $(TMP)/automake-$(automake_version).pkg \
         $(TMP)/libtool-$(libtool_version).pkg \
         $(TMP)/distribution.xml \
-        resources/background.png \
-        resources/license.html \
-        resources/welcome.html
+        $(TMP)/resources/background.png \
+        $(TMP)/resources/license.html \
+        $(TMP)/resources/welcome.html
 	productbuild \
         --distribution $(TMP)/distribution.xml \
-        --resources resources \
+        --resources $(TMP)/resources \
         --package-path $(TMP) \
         --version $(installer_version) \
         --sign 'Able Pear Software Incorporated' \
         $@
 
-$(TMP)/distribution.xml : distribution.xml | $(TMP)
+$(TMP)/distribution.xml \
+$(TMP)/resources/welcome.html : $(TMP)/% : % | $(dir $(TMP)/%)
 	sed \
         -e s/{{autoconf_version}}/$(autoconf_version)/g \
         -e s/{{automake_version}}/$(automake_version)/g \
         -e s/{{libtool_version}}/$(libtool_version)/g \
         -e s/{{installer_version}}/$(installer_version)/g \
         $< > $@
+
+$(TMP)/resources/background.png \
+$(TMP)/resources/license.html : $(TMP)/% : % | $(dir $(TMP)/%)
+	cp $< $@
+
+$(TMP) \
+$(TMP)/resources :
+	mkdir -p $@
 
 
 ##### autoconf pkg #####
@@ -129,7 +138,6 @@ $(libtool_build_dir)/config.status : libtool/configure | $(libtool_build_dir)
 
 ##### directories #####
 
-$(TMP) \
 $(autoconf_build_dir) \
 $(autoconf_install_dir) \
 $(automake_build_dir) \
