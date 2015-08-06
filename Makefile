@@ -22,11 +22,11 @@ autotools.pkg : \
         $(TMP)/automake.pkg \
         $(TMP)/libtool.pkg \
         resources/background.png \
-        resources/distribution.xml \
+        distribution.xml \
         resources/license.html \
         resources/welcome.html
 	productbuild \
-        --distribution resources/distribution.xml \
+        --distribution distribution.xml \
         --resources resources \
         --package-path $(TMP) \
         --version $(pkg_version) \

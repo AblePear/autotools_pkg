@@ -17,20 +17,20 @@
             description="Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages.">
         <pkg-ref id="com.ablepear.autoconf"/>
     </choice>
-    <pkg-ref id="com.ablepear.autoconf" version="0" onConclusion="none">autoconf.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.autoconf">autoconf.pkg</pkg-ref>
 
     <choice id="com.ablepear.automake" 
             title="Automake 1.15" 
             description="Automake is a tool for automatically generating Makefile.in files compliant with the GNU Coding Standards.">
         <pkg-ref id="com.ablepear.automake"/>
     </choice>
-    <pkg-ref id="com.ablepear.automake" version="0" onConclusion="none">automake.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.automake">automake.pkg</pkg-ref>
 
     <choice id="com.ablepear.libtool" 
             title="Libtool 2.4.6" 
             description="GNU libtool is a generic library support script. Libtool hides the complexity of using shared libraries behind a consistent, portable interface.">
         <pkg-ref id="com.ablepear.libtool"/>
     </choice>
-    <pkg-ref id="com.ablepear.libtool" version="0" onConclusion="none">libtool.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.libtool">libtool.pkg</pkg-ref>
 
 </installer-gui-script>
