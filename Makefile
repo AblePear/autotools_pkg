@@ -3,7 +3,7 @@ TMP ?= $(abspath tmp)
 autoconf_version := 2.69
 automake_version := 1.15
 libtool_version := 2.4.6
-installer_version := 3
+installer_version := 4
 
 .SECONDEXPANSION :
 
@@ -21,7 +21,7 @@ libtool : $(TMP)/libtool-$(libtool_version).pkg
 
 .PHONY : clean
 clean :
-	-rm -f autotools-r$(installer_version).pkg
+	-rm -f autotools-r*.pkg
 	-rm -rf $(TMP)
 
 
