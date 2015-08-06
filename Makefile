@@ -21,7 +21,7 @@ libtool : $(TMP)/libtool-$(libtool_version).pkg
 
 .PHONY : clean
 clean :
-	-rm -f autotools.pkg
+	-rm -f autotools-r$(installer_version).pkg
 	-rm -rf $(TMP)
 
 
