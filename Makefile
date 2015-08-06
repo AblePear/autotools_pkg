@@ -10,6 +10,14 @@ installer_version := 3
 .PHONY : all
 all : autotools-r$(installer_version).pkg
 
+.PHONY : autoconf
+autoconf : $(TMP)/autoconf-$(autoconf_version).pkg
+
+.PHONY : automake
+automake : $(TMP)/automake-$(automake_version).pkg
+
+.PHONY : libtool
+libtool : $(TMP)/libtool-$(libtool_version).pkg
 
 .PHONY : clean
 clean :
@@ -70,7 +78,7 @@ $(TMP)/autoconf/install/etc/paths.d/autoconf.path : autotools.path | $(TMP)/auto
 	cp $< $@
 
 $(TMP)/autoconf/install/usr/local/bin/autoconf : $(TMP)/autoconf/build/bin/autoconf | $(TMP)/autoconf/install
-	cd $(TMP)/autoconf/build && $(MAKE) DESTDIR=$(TMP)/autoconf/build install
+	cd $(TMP)/autoconf/build && $(MAKE) DESTDIR=$(TMP)/autoconf/install install
 
 $(TMP)/autoconf/build/bin/autoconf : $(TMP)/autoconf/build/config.status $(autoconf_sources)
 	cd $(TMP)/autoconf/build && $(MAKE)
