@@ -1,4 +1,4 @@
 .DS_Store
-autotools.pkg
+autotools-r*.pkg
 tmp
 

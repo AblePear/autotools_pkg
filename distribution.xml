@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <installer-gui-script minSpecVersion="1">
-    <title>GNU Autotools for OS X</title>
+    <title>GNU Autotools</title>
 
     <background alignment="center" file="background.png" mime-type="image/png" scaling="tofit" />
     <welcome file="welcome.html" mime-type="text/html" />
@@ -13,24 +13,24 @@
     </choices-outline>
 
     <choice id="com.ablepear.autoconf" 
-            title="Autoconf 2.69" 
+            title="Autoconf {{autoconf_version}}" 
             description="Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages.">
         <pkg-ref id="com.ablepear.autoconf"/>
     </choice>
-    <pkg-ref id="com.ablepear.autoconf">autoconf.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.autoconf">autoconf-{{autoconf_version}}.pkg</pkg-ref>
 
     <choice id="com.ablepear.automake" 
-            title="Automake 1.15" 
+            title="Automake {{automake_version}}" 
             description="Automake is a tool for automatically generating Makefile.in files compliant with the GNU Coding Standards.">
         <pkg-ref id="com.ablepear.automake"/>
     </choice>
-    <pkg-ref id="com.ablepear.automake">automake.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.automake">automake-{{automake_version}}.pkg</pkg-ref>
 
     <choice id="com.ablepear.libtool" 
-            title="Libtool 2.4.6" 
+            title="Libtool {{libtool_version}}" 
             description="GNU libtool is a generic library support script. Libtool hides the complexity of using shared libraries behind a consistent, portable interface.">
         <pkg-ref id="com.ablepear.libtool"/>
     </choice>
-    <pkg-ref id="com.ablepear.libtool">libtool.pkg</pkg-ref>
+    <pkg-ref id="com.ablepear.libtool">libtool-{{libtool_version}}.pkg</pkg-ref>
 
 </installer-gui-script>
