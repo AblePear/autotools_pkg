@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+
+ln -s libtoolize /usr/local/bin/glibtoolize

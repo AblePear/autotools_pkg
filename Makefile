@@ -3,7 +3,7 @@ TMP ?= $(abspath tmp)
 autoconf_version := 2.69
 automake_version := 1.15
 libtool_version := 2.4.6
-installer_version := 4
+installer_version := 5
 
 .SECONDEXPANSION :
 
@@ -124,14 +124,17 @@ $(TMP)/automake/install/etc/paths.d :
 
 ##### libtool pkg #####
 libtool_sources := $(shell find libtool -type f \! -name .DS_Store)
+libtool_scripts := $(shell find libtool_scripts -type f \! -name .DS_Store)
 
 $(TMP)/libtool-$(libtool_version).pkg : \
         $(TMP)/libtool/install/usr/local/bin/libtool \
-        $(TMP)/libtool/install/etc/paths.d/libtool.path
+        $(TMP)/libtool/install/etc/paths.d/libtool.path \
+        $(libtool_scripts)
 	pkgbuild \
         --root $(TMP)/libtool/install \
         --identifier com.ablepear.libtool \
         --ownership recommended \
+        --scripts libtool_scripts \
         --version $(libtool_version) \
         $@
 
