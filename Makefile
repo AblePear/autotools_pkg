@@ -3,7 +3,7 @@ TMP ?= $(abspath tmp)
 autoconf_version := 2.69
 automake_version := 1.15
 libtool_version := 2.4.6
-installer_version := 5
+installer_version := 6
 
 .SECONDEXPANSION :
 
